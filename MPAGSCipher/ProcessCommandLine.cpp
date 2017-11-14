@@ -58,6 +58,23 @@ bool processCommandLine(const std::vector<std::string>& args,
         ++i;
       }
     }
+    else if (args[i] == "-cipher") {
+      // Next element is filename unless -cipher is the last argument
+      if (i == nArgs-1 || (args[i+1]!="caesar" && args[i+1]!="playfair")) {
+        std::cerr << "[error] -cipher requires 'caesar' or 'playfair' keyword" << std::endl;
+        // Set the flag to indicate the error and terminate the loop
+        processStatus = false;
+        break;
+      }
+      else {
+          if(args[i+1]=="caesar"){
+              settings.cipherType=CipherType::Caesar;
+          }
+          else if(args[i+1]=="playfair"){
+              settings.cipherType=CipherType::Playfair;
+          }
+      }
+    }
     else if (args[i] == "-k") {
       // Handle cipher key option
       // Next element is the key unless -k is the last argument
