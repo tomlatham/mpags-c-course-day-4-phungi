@@ -27,7 +27,7 @@ TEST_CASE("Version found correctly", "[commandline]") {
 TEST_CASE("All other options processed correctly", "[commandline]") {
 
   ProgramSettings prog_set{false, false, "", "", "", CipherMode::Encrypt, CipherType::Caesar};
-  std::vector<std::string> cmd_line = {"mpags-cipher", "-i", "test-in.txt", "-o", "test-out.txt", "-k", "10", "--decrypt"};
+  std::vector<std::string> cmd_line = {"mpags-cipher", "-i", "test-in.txt", "-o", "test-out.txt", "-k", "10", "--decrypt", "--cipher", "playfair"};
   bool res = processCommandLine(cmd_line, prog_set);
 
   REQUIRE( res );
